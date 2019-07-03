@@ -13,6 +13,7 @@
 		0DFB02FF22CC7EC100D1E433 /* Coredata_course.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = 0DFB02FD22CC7EC100D1E433 /* Coredata_course.xcdatamodeld */; };
 		0DFB030122CC7EC300D1E433 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 0DFB030022CC7EC300D1E433 /* Assets.xcassets */; };
 		0DFB030422CC7EC300D1E433 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 0DFB030222CC7EC300D1E433 /* LaunchScreen.storyboard */; };
+		0DFB030C22CCBC2800D1E433 /* UIColor+theme.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0DFB030B22CCBC2800D1E433 /* UIColor+theme.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -24,6 +25,7 @@
 		0DFB030022CC7EC300D1E433 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		0DFB030322CC7EC300D1E433 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		0DFB030522CC7EC300D1E433 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		0DFB030B22CCBC2800D1E433 /* UIColor+theme.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIColor+theme.swift"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -63,6 +65,7 @@
 				0DFB030222CC7EC300D1E433 /* LaunchScreen.storyboard */,
 				0DFB030522CC7EC300D1E433 /* Info.plist */,
 				0DFB02FD22CC7EC100D1E433 /* Coredata_course.xcdatamodeld */,
+				0DFB030B22CCBC2800D1E433 /* UIColor+theme.swift */,
 			);
 			path = "Coredata-course";
 			sourceTree = "<group>";
@@ -139,6 +142,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				0DFB02F922CC7EC100D1E433 /* ViewController.swift in Sources */,
+				0DFB030C22CCBC2800D1E433 /* UIColor+theme.swift in Sources */,
 				0DFB02F722CC7EC100D1E433 /* AppDelegate.swift in Sources */,
 				0DFB02FF22CC7EC100D1E433 /* Coredata_course.xcdatamodeld in Sources */,
 			);

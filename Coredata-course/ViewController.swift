@@ -17,7 +17,11 @@ class ViewController: UITableViewController {
         view.backgroundColor = .white
         navigationItem.title = "Companies"
         
-        tableView.backgroundColor = UIColor(red: 9/255, green: 45/255, blue: 64/255, alpha: 1)
+        tableView.backgroundColor = .darkBlue
+        //tableView.separatorStyle = .none
+        tableView.separatorColor = .white
+        tableView.register(UITableViewCell.self, forCellReuseIdentifier: "cell")
+        tableView.tableFooterView = UIView()
         
         let addBtn = UIBarButtonItem(barButtonSystemItem: .add, target: self, action: #selector(addBtnPressed))
             addBtn.tintColor = .white
@@ -29,17 +33,44 @@ class ViewController: UITableViewController {
     
     private func setupNavigationBarStyle(){
         
-        let lightRed = UIColor(red: 247/255, green: 66/255, blue: 82/255, alpha: 1)
         
-        navigationController?.navigationBar.barTintColor = lightRed
+        navigationController?.navigationBar.barTintColor = .lightRed
         navigationController?.navigationBar.isTranslucent = false
         navigationController?.navigationBar.prefersLargeTitles = true
         navigationController?.navigationBar.largeTitleTextAttributes = [NSAttributedString.Key.foregroundColor:UIColor.white]
+        navigationController?.navigationBar.titleTextAttributes = [NSAttributedString.Key.foregroundColor:UIColor.white]
     }
     
     @objc private func addBtnPressed() {
         
     }
+    
+    override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
+        return 8
+    }
+    
+    override func tableView(_ tableView: UITableView, heightForHeaderInSection section: Int) -> CGFloat {
+        return 50
+    }
+    
+    override func tableView(_ tableView: UITableView, viewForHeaderInSection section: Int) -> UIView? {
+        
+        let view = UIView()
+        view.backgroundColor = .lighBlue
+        
+        return view
+    }
+    
+    override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
+        let cell =  tableView.dequeueReusableCell(withIdentifier: "cell", for: indexPath)
+        cell.backgroundColor = .tealColor
+        cell.textLabel?.text = "Name of the company"
+        cell.textLabel?.textColor = .white
+        cell.textLabel?.font = UIFont.boldSystemFont(ofSize: 16)
+        return cell
+    }
+    
 
+    
 }
 
