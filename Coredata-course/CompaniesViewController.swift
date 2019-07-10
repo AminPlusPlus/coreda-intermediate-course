@@ -1,5 +1,5 @@
 //
-//  ViewController.swift
+//  CompaniesViewController.swift
 //  Coredata-course
 //
 //  Created by Aminjoni Abdullozoda on 7/3/19.
@@ -7,12 +7,53 @@
 //
 
 import UIKit
+import CoreData
 
-class ViewController: UITableViewController {
-
+class CompaniesViewController: UITableViewController, CreateCompanyControllerDelegate {
+   
+    
+    func didAddCompany(company: Company) {
+        companies.append(company)
+        let newIndexPath = IndexPath(row: companies.count - 1, section: 0)
+        tableView.insertRows(at: [newIndexPath], with: .automatic)
+    }
+    
+    
+    private func fetchData (){
+        //initializa
+        let persistanceContainer = NSPersistentContainer(name: "Coredata_course")
+        //load
+        persistanceContainer.loadPersistentStores(completionHandler: { (persistentHandle, error) in
+            
+            if let err = error {
+                fatalError("Here is issue \(err)")
+            }
+        })
+        
+        //get context
+        let persistenceContext = persistanceContainer.viewContext
+        
+        //fetch request
+        let fetchRequest = NSFetchRequest<Company>(entityName: "Company")
+        
+        do {
+           let companies =  try persistenceContext.fetch(fetchRequest)
+            companies.forEach { (name) in
+                print(name.name ?? "")
+            }
+        } catch let err {
+            print("error ",err)
+        }
+        
+    }
+    
+    var companies = [Company]()
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         // Do any additional setup after loading the view.
+    
+        fetchData()
         
         view.backgroundColor = .white
         navigationItem.title = "Companies"
@@ -27,26 +68,20 @@ class ViewController: UITableViewController {
             addBtn.tintColor = .white
        
         navigationItem.rightBarButtonItem = addBtn
-        setupNavigationBarStyle()
     }
 
     
-    private func setupNavigationBarStyle(){
-        
-        
-        navigationController?.navigationBar.barTintColor = .lightRed
-        navigationController?.navigationBar.isTranslucent = false
-        navigationController?.navigationBar.prefersLargeTitles = true
-        navigationController?.navigationBar.largeTitleTextAttributes = [NSAttributedString.Key.foregroundColor:UIColor.white]
-        navigationController?.navigationBar.titleTextAttributes = [NSAttributedString.Key.foregroundColor:UIColor.white]
-    }
-    
     @objc private func addBtnPressed() {
+        let createCompanyVC = CreateCompanyViewController()
+        let createCompanyNC = CustomNavigationController(rootViewController: createCompanyVC)
         
+        createCompanyVC.delegate = self
+        
+        present(createCompanyNC, animated: true, completion: nil)
     }
     
     override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return 8
+        return companies.count
     }
     
     override func tableView(_ tableView: UITableView, heightForHeaderInSection section: Int) -> CGFloat {
@@ -64,13 +99,14 @@ class ViewController: UITableViewController {
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell =  tableView.dequeueReusableCell(withIdentifier: "cell", for: indexPath)
         cell.backgroundColor = .tealColor
-        cell.textLabel?.text = "Name of the company"
+        
+        let company = companies[indexPath.row]
+        
+        cell.textLabel?.text = company.name
         cell.textLabel?.textColor = .white
         cell.textLabel?.font = UIFont.boldSystemFont(ofSize: 16)
         return cell
     }
-    
-
     
 }
 
