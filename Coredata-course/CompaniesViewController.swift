@@ -86,6 +86,38 @@ class CompaniesViewController: UITableViewController, CreateCompanyControllerDel
         return view
     }
     
+    override func tableView(_ tableView: UITableView, editActionsForRowAt indexPath: IndexPath) -> [UITableViewRowAction]? {
+        
+        let deleteAction = UITableViewRowAction(style: .destructive, title: "Delete") { (_, indexPath) in
+            
+           
+            let company = self.companies[indexPath.row]
+            
+            //delete from array
+            self.companies.remove(at: indexPath.row)
+            
+            //delete from table view
+            self.tableView.deleteRows(at: [indexPath], with: .automatic)
+            
+            //delete from Core Data
+            let context = CoreDataManagement.shared.persistanceContainer.viewContext
+            context.delete(company)
+            
+            do {
+                try context.save()
+            } catch let saveErr {
+                print("Failed Save :",saveErr )
+            }
+            
+        }
+        
+        let editAction = UITableViewRowAction(style: .default, title: "Edit") { (_, indexPath) in
+            print("edit company")
+        }
+        
+        return [deleteAction,editAction]
+    }
+    
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell =  tableView.dequeueReusableCell(withIdentifier: "cell", for: indexPath)
         cell.backgroundColor = .tealColor

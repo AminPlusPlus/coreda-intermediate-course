@@ -2,8 +2,11 @@
 <model type="com.apple.IDECoreDataModeler.DataModel" documentVersion="1.0" lastSavedToolsVersion="14490.98" systemVersion="18F132" minimumToolsVersion="Automatic" sourceLanguage="Swift" userDefinedModelVersionIdentifier="">
     <entity name="Company" representedClassName="Company" syncable="YES" codeGenerationType="class">
         <attribute name="name" optional="YES" attributeType="String" syncable="YES"/>
+        <fetchedProperty name="fetchedProperty" optional="YES" syncable="YES">
+            <fetchRequest name="fetchedPropertyFetchRequest" entity="Company"/>
+        </fetchedProperty>
     </entity>
     <elements>
-        <element name="Company" positionX="-63" positionY="-18" width="128" height="60"/>
+        <element name="Company" positionX="-63" positionY="-18" width="128" height="89"/>
     </elements>
 </model>
