@@ -84,20 +84,9 @@ class CreateCompanyViewController: UIViewController {
     
     @objc private func saveHandle(){
         
-        dismiss(animated: true) {
-            
-            //initializa
-            let persistanceContainer = NSPersistentContainer(name: "Coredata_course")
-            //load
-            persistanceContainer.loadPersistentStores(completionHandler: { (persistentHandle, error) in
-                
-                if let err = error {
-                    fatalError("Here is issue \(err)")
-                }
-            })
-            
+
             //get context
-            let persistenceContext = persistanceContainer.viewContext
+            let persistenceContext = CoreDataManagement.shared.persistanceContainer.viewContext
             //entity
             let company = NSEntityDescription.insertNewObject(forEntityName: "Company", into: persistenceContext)
             //set value entity
@@ -106,16 +95,12 @@ class CreateCompanyViewController: UIViewController {
             //save it
             do {
                 try persistenceContext.save()
+                dismiss(animated: true) {
+                    self.delegate?.didAddCompany(company: company as! Company)
+                }
             }catch let saveErr{
                 print("error for saving",saveErr)
             }
-            
-          //  guard let name = self.nameTextField.text else { return  }
-          //  let company = Company(name: name, founded: Date())
-          //  self.delegate?.didAddCompany(company: company)
-        }
-        
-        
     }
 }
  

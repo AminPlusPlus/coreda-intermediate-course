@@ -20,27 +20,17 @@ class CompaniesViewController: UITableViewController, CreateCompanyControllerDel
     
     
     private func fetchData (){
-        //initializa
-        let persistanceContainer = NSPersistentContainer(name: "Coredata_course")
-        //load
-        persistanceContainer.loadPersistentStores(completionHandler: { (persistentHandle, error) in
-            
-            if let err = error {
-                fatalError("Here is issue \(err)")
-            }
-        })
-        
+
         //get context
-        let persistenceContext = persistanceContainer.viewContext
+        let persistenceContext = CoreDataManagement.shared.persistanceContainer.viewContext
         
         //fetch request
         let fetchRequest = NSFetchRequest<Company>(entityName: "Company")
         
         do {
            let companies =  try persistenceContext.fetch(fetchRequest)
-            companies.forEach { (name) in
-                print(name.name ?? "")
-            }
+            self.companies = companies
+            self.tableView.reloadData()
         } catch let err {
             print("error ",err)
         }
