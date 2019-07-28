@@ -111,11 +111,32 @@ class CompaniesViewController: UITableViewController, CreateCompanyControllerDel
             
         }
         
-        let editAction = UITableViewRowAction(style: .default, title: "Edit") { (_, indexPath) in
-            print("edit company")
-        }
+        //edit table row action
+        let editAction = UITableViewRowAction(style: .normal, title: "Edit",handler: editHandleFunction)
+        
+        deleteAction.backgroundColor = .lightRed
+        editAction.backgroundColor = .darkBlue
+        
         
         return [deleteAction,editAction]
+    }
+    
+    func didEditCompany (company : Company) {
+        let row = companies.firstIndex(of: company)
+        
+        let indexPath = IndexPath(row: row!, section: 0)
+        tableView.reloadRows(at: [indexPath], with: .middle)
+    }
+    
+    private func editHandleFunction (action : UITableViewRowAction, indexPath : IndexPath) {
+        
+        let editCompanyController = CreateCompanyViewController()
+        editCompanyController.delegate = self
+        editCompanyController.company = self.companies[indexPath.row]
+        let navContoller = CustomNavigationController(rootViewController: editCompanyController)
+        
+        present(navContoller, animated: true, completion: nil)
+        
     }
     
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
@@ -124,7 +145,18 @@ class CompaniesViewController: UITableViewController, CreateCompanyControllerDel
         
         let company = companies[indexPath.row]
         
-        cell.textLabel?.text = company.name
+        if let name = company.name, let founded = company.founded {
+            
+            //MMM dd,yyyy
+            let dateFormatter = DateFormatter()
+            dateFormatter.dateFormat = "MMM dd, yyyy"
+            let foundedDateString = dateFormatter.string(from: founded)
+            let dateString = "\(name) - Founded:\(foundedDateString)"
+            cell.textLabel?.text = dateString
+        } else {
+            cell.textLabel?.text = company.name
+        }
+        
         cell.textLabel?.textColor = .white
         cell.textLabel?.font = UIFont.boldSystemFont(ofSize: 16)
         return cell
