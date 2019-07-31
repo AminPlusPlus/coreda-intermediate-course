@@ -69,6 +69,7 @@ class CreateCompanyViewController: UIViewController {
     @objc private func addImageGesture(){
         let imagePickerController = UIImagePickerController()
         imagePickerController.delegate = self
+        imagePickerController.allowsEditing = true
 
         present(imagePickerController, animated: true, completion: nil)
     }
@@ -179,16 +180,19 @@ class CreateCompanyViewController: UIViewController {
 
 extension CreateCompanyViewController : UIImagePickerControllerDelegate, UINavigationControllerDelegate {
     
+    
     func imagePickerController(_ picker: UIImagePickerController, didFinishPickingMediaWithInfo info: [UIImagePickerController.InfoKey : Any]) {
-       
-        if let image = [UIImagePickerController.InfoKey.originalImage] as? UIImage {
-            print("image", image)
+      
+        if let image = info[.editedImage] as? UIImage {
             self.companyImageView.image = image
-            
         }
- 
+        else if let image = info[.originalImage] as? UIImage {
+            self.companyImageView.image = image
+        }
+        
         dismiss(animated: true, completion: nil)
     }
+    
     func imagePickerControllerDidCancel(_ picker: UIImagePickerController) {
         dismiss(animated: true, completion: nil)
     }
