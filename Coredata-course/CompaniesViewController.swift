@@ -29,6 +29,7 @@ class CompaniesViewController: UITableViewController, CreateCompanyControllerDel
         
         do {
            let companies =  try persistenceContext.fetch(fetchRequest)
+
             self.companies = companies
             self.tableView.reloadData()
         } catch let err {
@@ -54,12 +55,39 @@ class CompaniesViewController: UITableViewController, CreateCompanyControllerDel
         tableView.register(UITableViewCell.self, forCellReuseIdentifier: "cell")
         tableView.tableFooterView = UIView()
         
+        navigationItem.leftBarButtonItem = UIBarButtonItem(title: "Reset", style: .done, target: self, action: #selector(reset))
+        
         let addBtn = UIBarButtonItem(barButtonSystemItem: .add, target: self, action: #selector(addBtnPressed))
             addBtn.tintColor = .white
        
         navigationItem.rightBarButtonItem = addBtn
+        
     }
 
+    @objc private func reset(){
+        
+        //gurrenc context
+        let currentContext = CoreDataManagement.shared.persistanceContainer.viewContext
+        
+        let batchDeleteRequest = NSBatchDeleteRequest(fetchRequest: Company.fetchRequest())
+        
+        do {
+            try  currentContext.execute(batchDeleteRequest)
+            
+            var indexPathRow = [IndexPath]()
+            
+            for (index, _) in companies.enumerated() {
+                let indexPath = IndexPath(row: index, section: 0)
+                indexPathRow.append(indexPath)
+            }
+            self.companies.removeAll()
+            self.tableView.deleteRows(at: indexPathRow, with: .left)
+            
+        } catch let delErr {
+            print("Failed to delete objects",delErr )
+        }
+        
+    }
     
     @objc private func addBtnPressed() {
         let createCompanyVC = CreateCompanyViewController()
@@ -84,6 +112,22 @@ class CompaniesViewController: UITableViewController, CreateCompanyControllerDel
         view.backgroundColor = .lighBlue
         
         return view
+    }
+    
+    override func tableView(_ tableView: UITableView, viewForFooterInSection section: Int) -> UIView? {
+        
+        let infoLabel = UILabel()
+        infoLabel.textAlignment = .center
+        infoLabel.textColor = .white
+        infoLabel.font = UIFont.systemFont(ofSize: 20, weight: .bold)
+        
+        infoLabel.text = "No Companies!"
+        
+        return infoLabel
+    }
+    
+    override func tableView(_ tableView: UITableView, heightForFooterInSection section: Int) -> CGFloat {
+        return (companies.isEmpty) ? 150 : 0
     }
     
     override func tableView(_ tableView: UITableView, editActionsForRowAt indexPath: IndexPath) -> [UITableViewRowAction]? {

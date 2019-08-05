@@ -221,3 +221,4 @@ extension CreateCompanyViewController : UIImagePickerControllerDelegate, UINavig
         dismiss(animated: true, completion: nil)
     }
 }
+ 
