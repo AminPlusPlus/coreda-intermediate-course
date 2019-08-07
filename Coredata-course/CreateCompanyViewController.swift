@@ -192,9 +192,6 @@ class CreateCompanyViewController: UIViewController {
     
     private func makeCircleImage () {
         
-        print(companyImageView.frame.width)
-        print(companyImageView.frame.height)
-        
         companyImageView.layer.cornerRadius = companyImageView.frame.width / 2
         companyImageView.clipsToBounds = true
         companyImageView.layer.borderColor = UIColor.darkBlue.cgColor

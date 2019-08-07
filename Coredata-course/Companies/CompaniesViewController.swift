@@ -52,7 +52,7 @@ class CompaniesViewController: UITableViewController, CreateCompanyControllerDel
         tableView.backgroundColor = .darkBlue
         //tableView.separatorStyle = .none
         tableView.separatorColor = .white
-        tableView.register(UITableViewCell.self, forCellReuseIdentifier: "cell")
+        tableView.register(CompanyCell.self, forCellReuseIdentifier: "cell")
         tableView.tableFooterView = UIView()
         
         navigationItem.leftBarButtonItem = UIBarButtonItem(title: "Reset", style: .done, target: self, action: #selector(reset))
@@ -183,33 +183,14 @@ class CompaniesViewController: UITableViewController, CreateCompanyControllerDel
         
     }
     
+    override func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
+        return 60
+    }
+    
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        let cell =  tableView.dequeueReusableCell(withIdentifier: "cell", for: indexPath)
-        cell.backgroundColor = .tealColor
-        
-        let company = companies[indexPath.row]
-        
-        if let name = company.name, let founded = company.founded {
-            
-            //MMM dd,yyyy
-            let dateFormatter = DateFormatter()
-            dateFormatter.dateFormat = "MMM dd, yyyy"
-            let foundedDateString = dateFormatter.string(from: founded)
-            let dateString = "\(name) - Founded:\(foundedDateString)"
-            cell.textLabel?.text = dateString
-        } else {
-            cell.textLabel?.text = company.name
-        }
-        
-        cell.textLabel?.textColor = .white
-        cell.textLabel?.font = UIFont.boldSystemFont(ofSize: 16)
-        
-        cell.imageView?.image = UIImage(named: "add-image")
-        
-        if let imageData = company.imageData {
-            cell.imageView?.image = UIImage(data: imageData)
-        }
- 
+        let cell =  tableView.dequeueReusableCell(withIdentifier: "cell", for: indexPath) as! CompanyCell
+        cell.company = companies[indexPath.row]
+    
         return cell
     }
     
