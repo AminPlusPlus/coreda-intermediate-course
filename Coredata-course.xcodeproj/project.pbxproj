@@ -8,6 +8,8 @@
 
 /* Begin PBXBuildFile section */
 		0D11F5FE22DEDC8D0010F3DC /* CoreDataManagement.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0D11F5FD22DEDC8D0010F3DC /* CoreDataManagement.swift */; };
+		0D88CF2E230FF70700379BBA /* CompaniesViewController+CreateCompany.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0D88CF2D230FF70700379BBA /* CompaniesViewController+CreateCompany.swift */; };
+		0D88CF30230FF7B100379BBA /* CompaniesViewController+UITableView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0D88CF2F230FF7B100379BBA /* CompaniesViewController+UITableView.swift */; };
 		0DE57CEA22CE1DDE00C9F5B3 /* CreateCompanyViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0DE57CE922CE1DDE00C9F5B3 /* CreateCompanyViewController.swift */; };
 		0DEF023C22F9A983004C78FF /* CompanyCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0DEF023B22F9A983004C78FF /* CompanyCell.swift */; };
 		0DFB02F722CC7EC100D1E433 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0DFB02F622CC7EC100D1E433 /* AppDelegate.swift */; };
@@ -22,6 +24,8 @@
 
 /* Begin PBXFileReference section */
 		0D11F5FD22DEDC8D0010F3DC /* CoreDataManagement.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CoreDataManagement.swift; sourceTree = "<group>"; };
+		0D88CF2D230FF70700379BBA /* CompaniesViewController+CreateCompany.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "CompaniesViewController+CreateCompany.swift"; sourceTree = "<group>"; };
+		0D88CF2F230FF7B100379BBA /* CompaniesViewController+UITableView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "CompaniesViewController+UITableView.swift"; sourceTree = "<group>"; };
 		0DE57CE922CE1DDE00C9F5B3 /* CreateCompanyViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CreateCompanyViewController.swift; sourceTree = "<group>"; };
 		0DEF023B22F9A983004C78FF /* CompanyCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CompanyCell.swift; sourceTree = "<group>"; };
 		0DFB02F322CC7EC100D1E433 /* Coredata-course.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "Coredata-course.app"; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -52,6 +56,8 @@
 			children = (
 				0DEF023B22F9A983004C78FF /* CompanyCell.swift */,
 				0DFB02F822CC7EC100D1E433 /* CompaniesViewController.swift */,
+				0D88CF2D230FF70700379BBA /* CompaniesViewController+CreateCompany.swift */,
+				0D88CF2F230FF7B100379BBA /* CompaniesViewController+UITableView.swift */,
 			);
 			path = Companies;
 			sourceTree = "<group>";
@@ -164,8 +170,10 @@
 				0DE57CEA22CE1DDE00C9F5B3 /* CreateCompanyViewController.swift in Sources */,
 				0DFB02F922CC7EC100D1E433 /* CompaniesViewController.swift in Sources */,
 				0DFB030C22CCBC2800D1E433 /* UIColor+theme.swift in Sources */,
+				0D88CF2E230FF70700379BBA /* CompaniesViewController+CreateCompany.swift in Sources */,
 				0DEF023C22F9A983004C78FF /* CompanyCell.swift in Sources */,
 				0DFB02F722CC7EC100D1E433 /* AppDelegate.swift in Sources */,
+				0D88CF30230FF7B100379BBA /* CompaniesViewController+UITableView.swift in Sources */,
 				0DFB030E22CCD71600D1E433 /* Company.swift in Sources */,
 				0D11F5FE22DEDC8D0010F3DC /* CoreDataManagement.swift in Sources */,
 				0DFB02FF22CC7EC100D1E433 /* Coredata_course.xcdatamodeld in Sources */,
