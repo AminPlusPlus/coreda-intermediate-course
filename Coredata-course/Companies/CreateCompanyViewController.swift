@@ -86,7 +86,7 @@ class CreateCompanyViewController: UIViewController {
         // Do any additional setup after loading the view.
         navigationItem.title = company == nil ? "Create Company" : "Edit Comapany"
         view.backgroundColor = .darkBlue
-        navigationItem.leftBarButtonItem = UIBarButtonItem(title: "Cancel", style: .plain, target: self, action: #selector(handleCancel))
+        setupCancelBtnNavbar()
         navigationItem.rightBarButtonItem = UIBarButtonItem(title: "Save", style: .plain, target: self, action: #selector(saveHandle))
         setupUI()
     

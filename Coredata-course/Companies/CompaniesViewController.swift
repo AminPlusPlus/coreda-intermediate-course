@@ -30,12 +30,7 @@ class CompaniesViewController: UITableViewController {
         tableView.tableFooterView = UIView()
         
         navigationItem.leftBarButtonItem = UIBarButtonItem(title: "Reset", style: .done, target: self, action: #selector(reset))
-        
-        let addBtn = UIBarButtonItem(barButtonSystemItem: .add, target: self, action: #selector(addBtnPressed))
-            addBtn.tintColor = .white
-       
-        navigationItem.rightBarButtonItem = addBtn
-        
+        setupAddBtnNavbar(selector: #selector(addBtnPressed))
     }
 
     @objc private func reset(){
